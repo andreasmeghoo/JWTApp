@@ -32,7 +32,7 @@ namespace JWTApp.Controllers
                 return StatusCode(400, "Invalid Role");
             }
 
-            if(user.IsApproved = true)
+            if(user.IsApproved == true)
             {
                 return StatusCode(400, "User is already approved");
             }
