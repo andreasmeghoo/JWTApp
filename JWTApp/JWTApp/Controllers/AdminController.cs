@@ -27,7 +27,7 @@ namespace JWTApp.Controllers
             if (user == null)
                 return NotFound("User not found");
 
-            if (user.Role != "Admin" && user.Role != "User")
+            if (request.Role != "Admin" && request.Role != "User")
             {
                 return StatusCode(400, "Invalid Role");
             }
