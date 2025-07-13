@@ -72,19 +72,5 @@ namespace JWTApp.Controllers
 
             return Accepted("Registration submitted and pending approval.");
         }
-
-
-
-        private static string HashPassword(string password)
-        {
-            using var sha256 = SHA256.Create();
-            return Convert.ToBase64String(sha256.ComputeHash(Encoding.UTF8.GetBytes(password)));
-        }
-
-        private static bool VerifyPassword(string password, string hash)
-        {
-            return HashPassword(password) == hash;
-        }
-
     }
 }
