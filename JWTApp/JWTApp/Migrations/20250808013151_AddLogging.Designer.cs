@@ -4,6 +4,7 @@ using JWTApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JWTApp.Migrations
 {
     [DbContext(typeof(JWTAppDBContext))]
-    partial class JWTAppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250808013151_AddLogging")]
+    partial class AddLogging
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +36,6 @@ namespace JWTApp.Migrations
                     b.Property<long>("DurationMs")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("IpAddress")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Method")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,9 +49,6 @@ namespace JWTApp.Migrations
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

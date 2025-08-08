@@ -7,6 +7,7 @@ using JWTApp.Data;
 using JWTApp.Models;
 using JWTApp.Services;
 using AspNetCoreRateLimit;
+using JWTApp.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,6 +75,7 @@ app.UseAuthorization();
 
 
 app.UseIpRateLimiting();
+app.UseMiddleware<LoggingMiddleware>();
 
 app.MapControllers();
 

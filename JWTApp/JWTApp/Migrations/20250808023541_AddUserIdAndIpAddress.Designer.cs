@@ -4,6 +4,7 @@ using JWTApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JWTApp.Migrations
 {
     [DbContext(typeof(JWTAppDBContext))]
-    partial class JWTAppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250808023541_AddUserIdAndIpAddress")]
+    partial class AddUserIdAndIpAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
