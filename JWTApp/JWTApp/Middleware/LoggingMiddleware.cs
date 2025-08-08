@@ -2,6 +2,7 @@
 using System;
 using JWTApp.Data;
 using JWTApp.Models.Logging;
+using System.Security.Claims;
 
 namespace JWTApp.Middleware
 {
@@ -23,12 +24,23 @@ namespace JWTApp.Middleware
 
             var db = context.RequestServices.GetRequiredService<JWTAppDBContext>();
 
+            string? userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            string? ipAddress = context.Connection.RemoteIpAddress?.ToString();
+
+            if (context.Request.Headers.TryGetValue("X-Forwarded-For", out var forwardedFor))
+            {
+                ipAddress = forwardedFor.FirstOrDefault();
+            }
+
             var logEntry = new LogEntry
             {
                 Method = context.Request.Method,
                 Path = context.Request.Path,
                 StatusCode = context.Response.StatusCode,
-                DurationMs = stopwatch.ElapsedMilliseconds
+                DurationMs = stopwatch.ElapsedMilliseconds,
+                UserId = userId,
+                IpAddress = ipAddress
             };
 
             db.ApiLogs.Add(logEntry);
